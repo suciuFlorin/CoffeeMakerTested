@@ -1,9 +1,20 @@
 # CoffeeMakerTested
 Testing and improving the CoffeeMaker app
 
+# Project/Vscode setup
+
 If you see any errors or squigly lines please correctly set up your project, vscode or add a jdk if you are missing one.
 
 https://code.visualstudio.com/docs/java/java-tutorial
+
+# Adding `ant` plus Tutorial
+
+Ant binary dist 
+
+https://ant.apache.org/bindownload.cgi
+
+Tutorial
+https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
 
 # Running tests
 
