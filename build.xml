@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-<?xml-model href="build.xsd"?>
 <project name="CoffeeMaker" default="compile" basedir=".">
 
     <!-- Configuration for cobertura -->
