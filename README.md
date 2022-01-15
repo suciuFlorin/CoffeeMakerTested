@@ -7,7 +7,7 @@ If you see any errors or squigly lines please correctly set up your project, vsc
 
 https://code.visualstudio.com/docs/java/java-tutorial
 
-# Adding `ant` plus Tutorial
+# Adding `ant` plus Tutorial (for Windows)
 
 Ant binary dist 
 
@@ -30,3 +30,5 @@ for the Randoop-generated test cases.
 * `ant evosuite` generates tests for the `Inventory` class using EvoSuite.
 * `ant test.evosuite` runs the EvoSuite-generated tests.
 * `ant coverage.evosuite` generates a Cobertura report for the EvoSuite tests.
+
+Personal note: Windows is an inferior platform for development
