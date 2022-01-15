@@ -10,11 +10,17 @@ https://code.visualstudio.com/docs/java/java-tutorial
 # Adding `ant` plus Tutorial (for Windows)
 
 Ant binary dist 
-
-https://ant.apache.org/bindownload.cgi
+    https://ant.apache.org/bindownload.cgi
 
 Tutorial
-https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
+    https://mkyong.com/ant/how-to-install-apache-ant-on-windows/
+
+# Debugging
+
+If you encounter:
+* the error lambda expressions are not supported in -source 7
+
+Install a new jdk version -> `jdk1.8.0_271`
 
 # Running tests
 
