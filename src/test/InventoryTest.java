@@ -1,18 +1,17 @@
 package test;
 
-import org.junit.Test;
-import org.junit.Before;
-
 import main.coffeemaker.*;
 import main.coffeemaker.exceptions.*;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class InventoryTest {
 
 	private Recipe r1, r2, r3, r4, r5, r6, r7;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws RecipeException {
 		// Set up for r1
 		r1 = new Recipe();
@@ -89,10 +88,10 @@ public class InventoryTest {
 
 		// after running the test we had to add "synchronized" to every get
 
-		assertEquals(15, chocUnits);
-		assertEquals(15, milkUnits);
-		assertEquals(15, sugarUnits);
-		assertEquals(15, coffeeUnits);
+		Assertions.assertEquals(15, chocUnits);
+		Assertions.assertEquals(15, milkUnits);
+		Assertions.assertEquals(15, sugarUnits);
+		Assertions.assertEquals(15, coffeeUnits);
 	}
 
 	@Test
@@ -108,10 +107,10 @@ public class InventoryTest {
 		int sugarUnits = inventory.getSugar();
 		int coffeeUnits = inventory.getCoffee();
 
-		assertEquals(1, chocUnits);
-		assertEquals(1, milkUnits);
-		assertEquals(1, sugarUnits);
-		assertEquals(1, coffeeUnits);
+		Assertions.assertEquals(1, chocUnits);
+		Assertions.assertEquals(1, milkUnits);
+		Assertions.assertEquals(1, sugarUnits);
+		Assertions.assertEquals(1, coffeeUnits);
 	}
 
 	@Test
@@ -124,38 +123,38 @@ public class InventoryTest {
 		inventory.setCoffee(0);
 
 		// testing choco
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addChocolate("") // Should throw an InventoryException
 		);
 
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addChocolate("choco") // Should throw an InventoryException
 		);
 
 		// testing coffee
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addCoffee("") // Should throw an InventoryException
 		);
 
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addCoffee("coffee") // Should throw an InventoryException
 		);
 
 		// testing milk
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addMilk("") // Should throw an InventoryException
 		);
 
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addMilk("milk") // Should throw an InventoryException
 		);
 
 		// testing sugar
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addSugar("") // Should throw an InventoryException
 		);
 
-		assertThrows(
+		Assertions.assertThrows(
 				InventoryException.class, () -> inventory.addSugar("sugar") // Should throw an InventoryException
 		);
 
@@ -164,10 +163,10 @@ public class InventoryTest {
 		int sugarUnits = inventory.getSugar();
 		int coffeeUnits = inventory.getCoffee();
 
-		assertEquals(0, chocUnits);
-		assertEquals(0, milkUnits);
-		assertEquals(0, coffeeUnits);
-		assertEquals(0, sugarUnits);
+		Assertions.assertEquals(0, chocUnits);
+		Assertions.assertEquals(0, milkUnits);
+		Assertions.assertEquals(0, coffeeUnits);
+		Assertions.assertEquals(0, sugarUnits);
 	}
 
 	@Test
@@ -176,7 +175,7 @@ public class InventoryTest {
 
 		boolean ingredientsResult = inventory.enoughIngredients(r5);
 
-		assertEquals(true, ingredientsResult);
+		Assertions.assertEquals(true, ingredientsResult);
 
 		inventory.setChocolate(0);
 		inventory.setMilk(0);
@@ -185,12 +184,12 @@ public class InventoryTest {
 
 		boolean ingredients2Result = inventory.enoughIngredients(r5);
 
-		assertEquals(false, ingredients2Result);
+		Assertions.assertEquals(false, ingredients2Result);
 
 		// if we need 0 and we have zero we expect true
 		boolean ingredients3Result = inventory.enoughIngredients(r7);
 
-		assertEquals(true, ingredients3Result);
+		Assertions.assertEquals(true, ingredients3Result);
 
 	}
 
@@ -205,16 +204,16 @@ public class InventoryTest {
 
 		boolean ingredientsResult = inventory.useIngredients(r5);
 
-		assertEquals(true, ingredientsResult);
+		Assertions.assertEquals(true, ingredientsResult);
 
 		boolean ingredients2Result = inventory.useIngredients(r5);
 
-		assertEquals(false, ingredients2Result);
+		Assertions.assertEquals(false, ingredients2Result);
 
 		boolean ingredients3Result = inventory.useIngredients(r6);
 
 		// found that coffee wasn't removed Inventory.coffee += r.getAmtCoffee();
-		assertEquals(false, ingredients3Result);
+		Assertions.assertEquals(false, ingredients3Result);
 	}
 
 }

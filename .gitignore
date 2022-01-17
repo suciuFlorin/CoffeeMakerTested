@@ -23,3 +23,10 @@
 hs_err_pid*
 
 bin/
+
+# Default ignored files
+/shelf/
+/workspace.xml
+.idea/*
+.idea
+.vscode

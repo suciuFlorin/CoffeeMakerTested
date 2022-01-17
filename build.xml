@@ -10,6 +10,20 @@
     </path>
     <taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
 
+    <path id="junit-jupiter-api.classpath">
+        <fileset dir="lib">
+            <include name="junit-jupiter-api-5.6.0.jar" />
+        </fileset>
+    </path>
+    <taskdef classpathref="junit-jupiter-api.classpath" resource="tasks.properties" />
+
+    <path id="hamcrest.classpath">
+        <fileset dir="lib">
+            <include name="hamcrest-2.2.jar" />
+        </fileset>
+    </path>
+    <taskdef classpathref="hamcrest.classpath" resource="tasks.properties" />
+
     <!-- Target to clean up -->
     <target name="clean" description="Clean">
         <delete dir="bin" />
@@ -28,12 +42,12 @@
 
     <!-- Target to compile the project -->
     <target name="compile" depends="init" description="Compile">
-        <javac includeantruntime="true" srcdir="src" destdir="bin" source="1.7" target="1.7" compiler="javac1.7" nowarn="true" debug="yes"></javac>
+        <javac includeantruntime="true" srcdir="src/main" destdir="bin" source="1.7" target="1.7" compiler="javac1.7" nowarn="true" debug="yes" />
     </target>
 
     <!-- Target to compile the test suite -->
     <target name="compile.tests" depends="compile" description="Compile all tests">
-        <javac includeantruntime="true" srcdir="test" destdir="bin" source="1.7" target="1.7" compiler="javac1.7" nowarn="true" debug="yes">
+        <javac includeantruntime="true" srcdir="src/test" destdir="bin" source="1.7" target="1.7" compiler="javac1.7" nowarn="true" debug="yes">
             <classpath location="lib/junit-4.11.jar" />
         </javac>
     </target>
