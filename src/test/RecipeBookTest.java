@@ -2,8 +2,11 @@ package test;
 
 import main.coffeemaker.*;
 import main.coffeemaker.exceptions.*;
-import org.junit.jupiter.api.*;
 import org.junit.Test;
+
+import org.junit.Before;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecipeBookTest {
 
@@ -11,8 +14,8 @@ public class RecipeBookTest {
     private Recipe recipeTest1;
     private Recipe recipeTest2;
 
-    @BeforeEach
-    void setUp() throws RecipeException {
+    @Before
+    public void setUp() throws RecipeException {
         recipeBook = new RecipeBook();
         recipeTest1 = new Recipe();
         recipeTest1.setName("Coffee");
@@ -31,71 +34,51 @@ public class RecipeBookTest {
         recipeTest2.setPrice("50");
     }
 
-    /**
-     * @Test Case ID: 35
-     */
     @Test
-    void testAddRecipe() {
+    public void testAddRecipe() {
         Recipe[] recipes = recipeBook.getRecipes();
-        Assertions.assertTrue(recipeBook.addRecipe(recipeTest1));
+        assertTrue(recipeBook.addRecipe(recipeTest1));
         Recipe recipeTest = recipes[0];
-        Assertions.assertEquals(recipeTest1, recipeTest);
-        Assertions.assertFalse(recipeBook.addRecipe(recipeTest1));
+        assertEquals(recipeTest1, recipeTest);
+        assertFalse(recipeBook.addRecipe(recipeTest1));
     }
 
-    /**
-     * @Test Case ID: 36
-     */
     @Test
-    void testAddRecipeAddingTheSameRecipe() {
+    public void testAddRecipeAddingTheSameRecipe() {
         recipeBook.addRecipe(recipeTest1);
-        Assertions.assertFalse(recipeBook.addRecipe(recipeTest1));
+        assertFalse(recipeBook.addRecipe(recipeTest1));
     }
 
-    /**
-     * @Test Case ID: 37
-     */
     @Test
-    void testGetRecipeBooks() {
+    public void testGetRecipeBooks() {
         Recipe[] recipes = new Recipe[4];
         recipes[0] = recipeTest1;
         recipeBook.addRecipe(recipeTest1);
-        Assertions.assertArrayEquals(recipes, recipeBook.getRecipes());
+        assertArrayEquals(recipes, recipeBook.getRecipes());
     }
 
-    /**
-     * @Test Case ID: 38
-     */
-
     @Test
-    void testDeleteRecipe() {
-        recipeBook.addRecipe(recipeTest1);
-        recipeBook.deleteRecipe(0);
-        Assertions.assertNotSame(recipeTest1, recipeBook.getRecipes()[0]);
-        Assertions.assertNull(recipeBook.getRecipes()[0]);
+    public void testDeleteRecipe() {
+        RecipeBook reBook = new RecipeBook();
+        Recipe[] emptyRecipe = new Recipe[0];
+        reBook.addRecipe(recipeTest1);
+        reBook.deleteRecipe(0);
+        assertNotSame(recipeTest1, reBook.getRecipes()[0]);
+        assertEquals(emptyRecipe[0], reBook.getRecipes()[0]);
     }
 
-    /**
-     * @Test Case ID: 39
-     */
     @Test
-    void testDeleteRecipeThatIsEmpty() {
-        Assertions.assertNull(recipeBook.deleteRecipe(3));
+    public void testDeleteRecipeThatIsEmpty() {
+        assertNull(recipeBook.deleteRecipe(3));
     }
 
-    /**
-     * @Test Case ID: 42
-     */
     @Test
-    void deleteInvalidRecipe() {
-        Assertions.assertNull(recipeBook.deleteRecipe(recipeBook.getRecipes().length + 10));
+    public void deleteInvalidRecipe() {
+        assertNull(recipeBook.deleteRecipe(recipeBook.getRecipes().length + 10));
     }
 
-    /**
-     * @Test Case ID: 40
-     */
     @Test
-    void testEditRecipe() throws RecipeException {
+    public void testEditRecipe() throws RecipeException {
         recipeBook.addRecipe(recipeTest1);
         Recipe testRecipe = new Recipe();
         testRecipe.setName("Tea");
@@ -107,25 +90,20 @@ public class RecipeBookTest {
         recipeBook.editRecipe(0, recipeTest2);
         Recipe[] recipes = new Recipe[4];
         recipes[0] = testRecipe;
-        Assertions.assertArrayEquals(recipes, recipeBook.getRecipes());
-        Assertions.assertSame(testRecipe, recipeBook.getRecipes()[0]);
+        assertArrayEquals(recipes, recipeBook.getRecipes());
+        assertSame(testRecipe, recipeBook.getRecipes()[0]);
     }
 
-    /**
-     * @Test Case ID: 41
-     */
     @Test
-    void testEditRecipeAtNullPosition() {
+    public void testEditRecipeAtNullPosition() {
 
-        Assertions.assertNull(recipeBook.editRecipe(0, recipeTest2));
+        assertNull(recipeBook.editRecipe(0, recipeTest2));
     }
 
-    /**
-     * @Test Case ID: 43
-     */
     @Test
-    void testEditRecipeWithNullRecipe() {
+    public void testEditRecipeWithNullRecipe() {
+        // had to add a check for when Recipe is null
         recipeBook.addRecipe(recipeTest1);
-        Assertions.assertNull(recipeBook.editRecipe(0, null));
+        assertNull(recipeBook.editRecipe(0, null));
     }
 }

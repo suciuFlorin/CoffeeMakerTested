@@ -21,7 +21,12 @@ public class RecipeBook {
 	 * @return Recipe[]
 	 */
 	public synchronized Recipe[] getRecipes() {
-		return recipeArray;
+		// had to check for array length
+		if (recipeArray.length > 0) {
+			return recipeArray;
+		}
+
+		return new Recipe[0];
 	}
 
 	public synchronized boolean addRecipe(Recipe r) {
@@ -57,6 +62,11 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String deleteRecipe(int recipeToDelete) {
+		// had to add check for out of bounds items
+		if (recipeToDelete > recipeArray.length) {
+			return null;
+		}
+
 		if (recipeArray[recipeToDelete] != null) {
 			String recipeName = recipeArray[recipeToDelete].getName();
 			recipeArray[recipeToDelete] = new Recipe();
@@ -75,6 +85,11 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
+		// add null check
+		if (newRecipe == null) {
+			return null;
+		}
+
 		if (recipeArray[recipeToEdit] != null) {
 			String recipeName = recipeArray[recipeToEdit].getName();
 			newRecipe.setName("");

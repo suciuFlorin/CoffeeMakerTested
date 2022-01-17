@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 
 public class RecipeTest {
     private Recipe r1, r2, r3, r4, r5, r6, r7;
+    private Recipe recipe1, recipe2;
 
     @Before
     public void setUp() throws RecipeException {
@@ -76,6 +77,21 @@ public class RecipeTest {
         r7.setAmtSugar("0");
         r7.setPrice("1");
 
+        recipe1 = new Recipe();
+        recipe1.setName("Test");
+        recipe1.setAmtChocolate("1");
+        recipe1.setAmtCoffee("1");
+        recipe1.setAmtMilk("1");
+        recipe1.setAmtSugar("1");
+        recipe1.setPrice("1");
+
+        recipe2 = new Recipe();
+        recipe2.setName("Test");
+        recipe2.setAmtChocolate("1");
+        recipe2.setAmtCoffee("1");
+        recipe2.setAmtMilk("1");
+        recipe2.setAmtSugar("1");
+        recipe2.setPrice("1");
     }
 
     @Test
@@ -112,5 +128,221 @@ public class RecipeTest {
         assertEquals(1, sugarAmt);
         assertEquals(1, coffeeAmt);
         assertEquals(1, price);
+    }
+
+    @Test
+    public void testGetAmtChocolatePositiveInt() {
+        assertEquals(0, r1.getAmtChocolate());
+    }
+
+    @Test
+    public void testSetAmtChocolate() {
+        try {
+            r1.setAmtChocolate("12");
+            assertEquals(12, r1.getAmtChocolate());
+        } catch (RecipeException e) {
+            fail("RecipeException was thrown, due to an invalid input!");
+        }
+    }
+
+    @Test
+    public void testSetAmtChocolateNegativeNumber() {
+        assertThrows(RecipeException.class, () -> r1.setAmtChocolate(-1 + ""));
+    }
+
+    @Test
+    public void testSetAmtChocolateInvalid() {
+        assertThrows(RecipeException.class, () -> r1.setAmtChocolate("Blah"));
+    }
+
+    @Test
+    public void testSetAmtChocolateNoInput() {
+        assertThrows(RecipeException.class, () -> r1.setAmtChocolate(""));
+    }
+
+    @Test
+    public void testGetAmtCoffee() {
+        assertEquals(3, r1.getAmtCoffee());
+    }
+
+    @Test
+    public void testSetAmtCoffee() {
+        try {
+            r1.setAmtCoffee("17");
+            assertEquals(17, r1.getAmtCoffee());
+        } catch (RecipeException e) {
+            fail("RecipeException was thrown, due to an invalid input!");
+        }
+    }
+
+    @Test
+    public void testSetAmtCoffeeNegativeNumber() {
+        assertThrows(RecipeException.class, () -> r1.setAmtCoffee(-1 + ""));
+    }
+
+    @Test
+    public void testSetAmtCoffeeInvalid() {
+        assertThrows(RecipeException.class, () -> r1.setAmtCoffee("Blah"));
+    }
+
+    @Test
+    public void testSetAmtCoffeeEmptyInput() {
+        assertThrows(RecipeException.class, () -> r1.setAmtCoffee(""));
+    }
+
+    @Test
+    public void testGetAmtMilk() {
+        assertEquals(1, r1.getAmtMilk());
+    }
+
+    @Test
+    public void testSetAmtMilk() {
+        try {
+            r1.setAmtMilk("9");
+            assertEquals(9, r1.getAmtMilk());
+        } catch (RecipeException e) {
+            fail("RecipeException was thrown, due to an invalid input!");
+        }
+    }
+
+    @Test
+    public void testSetAmtMilkNegativeNumber() {
+        assertThrows(RecipeException.class, () -> r1.setAmtMilk(-1 + ""));
+    }
+
+    /**
+     * @Test Case ID: 14
+     */
+    @Test
+    public void testSetAmtMilkInvalid() {
+        assertThrows(RecipeException.class, () -> r1.setAmtMilk("Blah"));
+    }
+
+    @Test
+    public void testSetAmtMilkEmptyInput() {
+        assertThrows(RecipeException.class, () -> r1.setAmtMilk(""));
+    }
+
+    @Test
+    public void testGetAmtSugar() {
+        assertEquals(1, r1.getAmtSugar());
+    }
+
+    @Test
+    public void testSetAmtSugar() {
+        try {
+            r1.setAmtSugar("11");
+            assertEquals(11, r1.getAmtSugar());
+        } catch (RecipeException e) {
+            fail("RecipeException was thrown, due to an invalid input!");
+        }
+    }
+
+    @Test
+    public void testSetAmtSugarNegativeNumber() {
+        assertThrows(RecipeException.class, () -> r1.setAmtSugar(-1 + ""));
+    }
+
+    @Test
+    public void testSetAmtSugarInvalid() {
+        assertThrows(RecipeException.class, () -> r1.setAmtSugar("Blah"));
+    }
+
+    @Test
+    public void testSetAmtSugarEmptyInput() {
+        assertThrows(RecipeException.class, () -> r1.setAmtSugar(""));
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals("Coffee", r1.getName());
+    }
+
+    @Test
+    public void testSetName() {
+        r1.setName("New");
+        assertEquals("New", r1.getName());
+    }
+
+    @Test
+    public void testSetNameNull() {
+        r1.setName(null);
+        assertNotNull(r1.getName());
+    }
+
+    @Test
+    public void testGetPrice() {
+        assertEquals(50, r1.getPrice());
+    }
+
+    @Test
+    public void testSetPrice() {
+        try {
+            r1.setPrice("55");
+            assertEquals(55, r1.getPrice());
+        } catch (RecipeException e) {
+            fail("RecipeException was thrown, due to an invalid input!");
+        }
+    }
+
+    @Test
+    public void testSetPriceNegativeNumber() {
+        assertThrows(RecipeException.class, () -> r1.setPrice(-1 + ""));
+    }
+
+    @Test
+    public void testSetPriceInvalid() {
+        assertThrows(RecipeException.class, () -> r1.setPrice("Blah"));
+    }
+
+    @Test
+    public void testSetPriceEmptyInput() {
+        assertThrows(RecipeException.class, () -> r1.setPrice(""));
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals(r1.getName(), r1.toString());
+    }
+
+    @Test
+    public void testHashCode() {
+        assertTrue(recipe1.hashCode() == recipe2.hashCode());
+        assertTrue(recipe1.equals(recipe2) && recipe2.equals(recipe1));
+    }
+
+    @Test
+    public void testEqualsValid() throws RecipeException {
+
+        Recipe recipe3 = new Recipe();
+        recipe3.setAmtChocolate("5");
+        recipe3.setAmtCoffee("10");
+        recipe3.setAmtMilk("8");
+        recipe3.setAmtSugar("7");
+        recipe3.setName("Coffee");
+        recipe3.setPrice("50");
+        assertEquals(r1, recipe3);
+
+        r2 = r1;
+        assertEquals(r1, r2);
+    }
+
+    @Test
+    public void testEqualsNull() {
+        r2 = null;
+        assertFalse(r1.equals(r2));
+    }
+
+    @Test
+    public void testEqualsReturnFalse() {
+        r2.setName("new name");
+        assertFalse(r1.equals(r2));
+    }
+
+    @Test
+    public void testEqualsGetClass() {
+
+        Inventory inv = new Inventory();
+        assertFalse(r1.equals(inv));
     }
 }

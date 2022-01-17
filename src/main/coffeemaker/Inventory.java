@@ -191,7 +191,8 @@ public class Inventory {
         } catch (NumberFormatException e) {
             throw new InventoryException("Units of sugar must be a positive integer");
         }
-        if (amtSugar <= 0) {
+        // had to switch from <= to >=
+        if (amtSugar >= 0) {
             Inventory.sugar += amtSugar;
         } else {
             throw new InventoryException("Units of sugar must be a positive integer");
